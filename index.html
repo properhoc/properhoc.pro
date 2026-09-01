@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proper Hoc Consulting | Strategic Planning & Program Evaluation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;       /* Deep Slate/Navy */
+            --primary-light: #1e293b;
+            --accent: #b45309;        /* Warm Amber/Bronze */
+            --accent-soft: #fef3c7;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.01em;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- Header / Nav --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-left: 24px;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-accent:hover {
+            opacity: 0.92;
+        }
+
+        .btn-outline {
+            border-color: var(--border);
+            background: #ffffff;
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background: #f1f5f9;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 72px 0 56px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .tagline-badge {
+            display: inline-block;
+            background: var(--accent-soft);
+            color: #92400e;
+            font-weight: 600;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 2.85rem;
+            line-height: 1.15;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            max-width: 360px;
+            height: 440px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 4px solid #ffffff;
+        }
+
+        .quote-pill {
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            box-shadow: var(--shadow-md);
+            white-space: nowrap;
+            border: 1px solid var(--border);
+        }
+
+        /* --- Framework / Problem Section --- */
+        .callout-section {
+            background: #ffffff;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 48px 0;
+            margin: 40px 0;
+        }
+
+        .fallacy-box {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .fallacy-box h2 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .fallacy-box p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .fallacy-latin {
+            font-style: italic;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* --- Services --- */
+        .services-section {
+            padding: 48px 0 64px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .service-card li {
+            font-size: 0.92rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-card li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* --- Interactive Estimator --- */
+        .estimator-section {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 64px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .estimator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .form-group select, .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #ffffff;
+        }
+
+        .estimate-output {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .estimate-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 8px 0;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 48px 0 24px;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-text {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid, .estimator-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-image-wrapper {
+                order: -1;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-inner">
+            <a href="#" class="logo">Proper Hoc <span>Consulting</span></a>
+            <nav>
+                <a href="#services">Services</a>
+                <a href="#estimator">Estimate Scope</a>
+                <a href="#contact" class="btn btn-primary">Book Consultation</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <span class="tagline-badge">Strategy & Program Evaluation</span>
+                    <h1>Stop guessing what’s actually moving the needle.</h1>
+                    <p>
+                        Most organizations assume that because outcome <em>Y</em> followed initiative <em>X</em>, <em>X</em> must have caused it. Proper Hoc Consulting brings methodological rigor, executive clarity, and defensible data to your strategic roadmap.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-accent">Schedule Advisory Call</a>
+                        <a href="#services" class="btn btn-outline">Explore Capabilities</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="headshot.png" alt="Proper Hoc Consulting Principal" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'">
+                    <div class="quote-pill">Data-Grounded • Execution-Focused</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="callout-section">
+        <div class="container">
+            <div class="fallacy-box">
+                <h2>The Premise: <span class="fallacy-latin">Post hoc ergo propter hoc</span></h2>
+                <p>
+                    "After this, therefore because of this." It is the single most common logical fallacy draining budgets and misdirecting leadership. We replace assumptions with verifiable frameworks so you invest where impact is real.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Advisory Practice Areas</h2>
+                <p>Targeted engagements designed to give executive teams clarity, alignment, and actionable metrics.</p>
+            </div>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <div>
+                        <h3>Strategic Planning</h3>
+                        <p>Practical, execution-focused strategic plans that align leadership, allocate resources effectively, and establish measurable milestones.</p>
+                        <ul>
+                            <li>Organizational roadmapping & goal alignment</li>
+                            <li>Resource allocation modeling</li>
+                            <li>Executive facilitation & KPI design</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-outline">Plan an Engagement</a>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <h3>Program Evaluation</h3>
+                        <p>Rigorous, objective evaluation models designed to measure real intervention impact and separate progress from random correlation.</p>
+                        <ul>
+                            <li>Quantitative & qualitative assessment</li>
+                            <li>Outcome attribution & ROI analysis</li>
+                            <li>Grant and stakeholder reporting</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-outline">Evaluate a Program</a>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <h3>Advisory & Stress Testing</h3>
+                        <p>Objective third-party review of current initiatives, internal metrics, and strategic assumptions before capital is deployed.</p>
+                        <ul>
+                            <li>Pre-launch logic-model verification</li>
+                            <li>Board-level evaluation audits</li>
+                            <li>Ongoing executive sounding board</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn btn-outline">Inquire on Retainers</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="estimator">
+        <div class="estimator-section">
+            <div class="estimator-grid">
+                <div>
+                    <h2 style="font-size: 1.8rem; margin-bottom: 12px; color: var(--primary);">Engagement Estimator</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Select your organizational requirements to get an indicative scope and budget framework for project-based advisory.</p>
+                    
+                    <div class="form-group">
+                        <label for="serviceType">Primary Practice Area</label>
+                        <select id="serviceType" onchange="calculateEstimate()">
+                            <option value="eval">Program Evaluation & Impact Study</option>
+                            <option value="strat">Full Strategic Planning Roadmap</option>
+                            <option value="audit">Strategic Stress Test / Audit</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="orgSize">Organization / Initiative Scope</label>
+                        <select id="orgSize" onchange="calculateEstimate()">
+                            <option value="single">Single Department / Pilot Program</option>
+                            <option value="mid">Mid-Market / Multi-Program Entity</option>
+                            <option value="enterprise">Enterprise / Statewide System</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="estimate-output">
+                    <span style="text-transform: uppercase; font-size: 0.78rem; font-weight: 700; color: var(--accent); letter-spacing: 0.05em;">Estimated Project Scope</span>
+                    <div class="estimate-price" id="priceDisplay">$4,500 – $6,500</div>
+                    <p id="timelineDisplay" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Typical Duration: 3–4 Weeks</p>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Discuss This Engagement</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="contact" style="padding-bottom: 80px;">
+        <div style="max-width: 640px; margin: 0 auto; background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow-sm);">
+            <h2 style="font-size: 1.8rem; color: var(--primary); text-align: center; margin-bottom: 8px;">Start a Conversation</h2>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">Drop a note to schedule an introductory call or discuss your upcoming initiative.</p>
+            
+            <form onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" required placeholder="Jane Doe">
+                </div>
+                <div class="form-group">
+                    <label>Work Email</label>
+                    <input type="email" required placeholder="jane@organization.org">
+                </div>
+                <div class="form-group">
+                    <label>Initiative / Focus Area</label>
+                    <textarea rows="3" placeholder="Briefly describe the program or strategy challenge..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-accent" style="width: 100%;">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 4px;">Proper Hoc Consulting</h3>
+                    <p class="footer-text">Strategic Planning • Rigorous Program Evaluation • Defensible Outcomes</p>
+                </div>
+                <div class="footer-text">
+                    &copy; 2026 Proper Hoc Consulting. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function calculateEstimate() {
+            const service = document.getElementById('serviceType').value;
+            const size = document.getElementById('orgSize').value;
+            const priceDisplay = document.getElementById('priceDisplay');
+            const timelineDisplay = document.getElementById('timelineDisplay');
+
+            let price = "$4,500 – $6,500";
+            let timeline = "Typical Duration: 3–4 Weeks";
+
+            if (service === 'strat') {
+                if (size === 'single') {
+                    price = "$3,500 – $5,000";
+                    timeline = "Typical Duration: 2–3 Weeks";
+                } else if (size === 'mid') {
+                    price = "$6,500 – $9,500";
+                    timeline = "Typical Duration: 4–6 Weeks";
+                } else {
+                    price = "$12,000 – $18,000";
+                    timeline = "Typical Duration: 8–10 Weeks";
+                }
+            } else if (service === 'eval') {
+                if (size === 'single') {
+                    price = "$4,000 – $6,000";
+                    timeline = "Typical Duration: 3–4 Weeks";
+                } else if (size === 'mid') {
+                    price = "$7,500 – $11,000";
+                    timeline = "Typical Duration: 5–7 Weeks";
+                } else {
+                    price = "$14,000 – $22,000";
+                    timeline = "Typical Duration: 8–12 Weeks";
+                }
+            } else if (service === 'audit') {
+                if (size === 'single') {
+                    price = "$2,000 – $3,500";
+                    timeline = "Typical Duration: 1–2 Weeks";
+                } else if (size === 'mid') {
+                    price = "$4,000 – $6,500";
+                    timeline = "Typical Duration: 2–3 Weeks";
+                } else {
+                    price = "$8,000 – $12,000";
+                    timeline = "Typical Duration: 3–5 Weeks";
+                }
+            }
+
+            priceDisplay.textContent = price;
+            timelineDisplay.textContent = timeline;
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for reaching out. We will connect with you within one business day.');
+        }
+    </script>
+</body>
+</html>
