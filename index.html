@@ -381,23 +381,7 @@
             margin: 0 4px 6px 0;
         }
 
-        /* --- Estimator --- */
-        .estimator-section {
-            background: #ffffff;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 40px;
-            margin-bottom: 64px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .estimator-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 36px;
-            align-items: center;
-        }
-
+        /* --- Form Elements --- */
         .form-group {
             margin-bottom: 16px;
         }
@@ -410,7 +394,7 @@
             margin-bottom: 6px;
         }
 
-        .form-group select, .form-group input, .form-group textarea {
+        .form-group input, .form-group textarea {
             width: 100%;
             padding: 10px 12px;
             border: 1px solid var(--border);
@@ -418,21 +402,6 @@
             font-family: inherit;
             font-size: 0.95rem;
             background: #ffffff;
-        }
-
-        .estimate-output {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 28px;
-            text-align: center;
-        }
-
-        .estimate-price {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 8px 0;
         }
 
         /* --- Footer --- */
@@ -458,7 +427,7 @@
         }
 
         @media (max-width: 840px) {
-            .hero-grid, .estimator-grid, .bio-grid {
+            .hero-grid, .bio-grid {
                 grid-template-columns: 1fr;
             }
             .stats-grid {
@@ -482,7 +451,6 @@
             <nav>
                 <a href="#services">Practice Areas</a>
                 <a href="#credentials">Background</a>
-                <a href="#estimator">Scope Estimator</a>
                 <a href="#contact" class="btn btn-primary">Connect</a>
             </nav>
         </div>
@@ -609,10 +577,10 @@
                     <span class="tagline-badge">Leadership</span>
                     <h3>Dr. Jeffrey Harding</h3>
                     <p>
-                        With a background spanning senior research leadership at the Georgia Department of Education, directing R&D innovation labs at Cognia, and published empirical scholarship, Dr. Harding bridges methodological rigor and real-world strategic execution.
+                        With a background spanning senior research leadership at the Georgia Department of Education, directing R&D innovation labs at Cognia, and published empirical scholarship, Dr. Harding bridges methodological rigor and real-world strategic execution[span_0](start_span)[span_0](end_span).
                     </p>
                     <p>
-                        Having analyzed millions of administrative data points and advised state superintendents, directors, and executive leadership, Proper Hoc Consulting brings tier-one empirical rigor to organizations of all scales.
+                        Having analyzed millions of administrative data points and advised state superintendents, directors, and executive leadership, Proper Hoc Consulting brings tier-one empirical rigor to organizations of all scales[span_1](start_span)[span_1](end_span).
                     </p>
                 </div>
                 <div>
@@ -628,46 +596,9 @@
                         <span class="method-tag">Logic Modeling</span>
                     </div>
                     <h3 style="font-size: 1.25rem; margin-top: 16px;">Academic Background</h3>
-                    <p style="font-size: 0.92rem; margin-bottom: 4px;"><strong>Ph.D. Higher Education</strong> — University of Georgia</p>
-                    <p style="font-size: 0.92rem; margin-bottom: 4px;"><strong>M.Ed. Higher Education Administration</strong> — Vanderbilt University</p>
-                    <p style="font-size: 0.92rem;"><strong>B.A. English</strong> — Middle Tennessee State University</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Scope Estimator -->
-    <section class="container" id="estimator">
-        <div class="estimator-section">
-            <div class="estimator-grid">
-                <div>
-                    <h2 style="font-size: 1.8rem; margin-bottom: 12px; color: var(--primary);">Engagement Scope Estimator</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Select your project requirements to calculate an initial advisory timeline and framework.</p>
-                    
-                    <div class="form-group">
-                        <label for="serviceType">Primary Practice Area</label>
-                        <select id="serviceType" onchange="calculateEstimate()">
-                            <option value="eval">Causal Program Evaluation & Impact Study</option>
-                            <option value="strat">Strategic Planning & KPI Architecture</option>
-                            <option value="audit">Metric Audit & Logic Model Stress-Test</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="orgSize">Scope of Initiative</label>
-                        <select id="orgSize" onchange="calculateEstimate()">
-                            <option value="single">Single Initiative / Pilot Program</option>
-                            <option value="mid">Mid-Market / Multi-Program Entity</option>
-                            <option value="enterprise">Enterprise / Statewide System</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="estimate-output">
-                    <span style="text-transform: uppercase; font-size: 0.78rem; font-weight: 700; color: var(--accent); letter-spacing: 0.05em;">Estimated Advisory Scope</span>
-                    <div class="estimate-price" id="priceDisplay">$4,500 – $6,500</div>
-                    <p id="timelineDisplay" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Typical Duration: 3–4 Weeks</p>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Discuss Engagement</a>
+                    <p style="font-size: 0.92rem; margin-bottom: 4px;"><strong>Ph.D. Higher Education</strong> — University of Georgia[span_2](start_span)[span_2](end_span)</p>
+                    <p style="font-size: 0.92rem; margin-bottom: 4px;"><strong>M.Ed. Higher Education Administration</strong> — Vanderbilt University[span_3](start_span)[span_3](end_span)</p>
+                    <p style="font-size: 0.92rem;"><strong>B.A. English</strong> — Middle Tennessee State University[span_4](start_span)[span_4](end_span)</p>
                 </div>
             </div>
         </div>
@@ -715,56 +646,8 @@
         </div>
     </footer>
 
-    <!-- Estimation Script -->
+    <!-- Form Handler Script -->
     <script>
-        function calculateEstimate() {
-            const service = document.getElementById('serviceType').value;
-            const size = document.getElementById('orgSize').value;
-            const priceDisplay = document.getElementById('priceDisplay');
-            const timelineDisplay = document.getElementById('timelineDisplay');
-
-            let price = "$4,500 – $6,500";
-            let timeline = "Typical Duration: 3–4 Weeks";
-
-            if (service === 'strat') {
-                if (size === 'single') {
-                    price = "$3,500 – $5,000";
-                    timeline = "Typical Duration: 2–3 Weeks";
-                } else if (size === 'mid') {
-                    price = "$6,500 – $9,500";
-                    timeline = "Typical Duration: 4–6 Weeks";
-                } else {
-                    price = "$12,000 – $18,000";
-                    timeline = "Typical Duration: 8–10 Weeks";
-                }
-            } else if (service === 'eval') {
-                if (size === 'single') {
-                    price = "$4,000 – $6,000";
-                    timeline = "Typical Duration: 3–4 Weeks";
-                } else if (size === 'mid') {
-                    price = "$7,500 – $11,000";
-                    timeline = "Typical Duration: 5–7 Weeks";
-                } else {
-                    price = "$14,000 – $22,000";
-                    timeline = "Typical Duration: 8–12 Weeks";
-                }
-            } else if (service === 'audit') {
-                if (size === 'single') {
-                    price = "$2,000 – $3,500";
-                    timeline = "Typical Duration: 1–2 Weeks";
-                } else if (size === 'mid') {
-                    price = "$4,000 – $6,500";
-                    timeline = "Typical Duration: 2–3 Weeks";
-                } else {
-                    price = "$8,000 – $12,000";
-                    timeline = "Typical Duration: 3–5 Weeks";
-                }
-            }
-
-            priceDisplay.textContent = price;
-            timelineDisplay.textContent = timeline;
-        }
-
         function handleFormSubmit(e) {
             e.preventDefault();
             alert('Thank you for reaching out. We will connect with you within one business day.');
