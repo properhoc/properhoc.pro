@@ -30,12 +30,17 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, .serif {
@@ -73,6 +78,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap;
         }
 
         .logo span {
@@ -96,7 +102,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 10px 22px;
+            padding: 12px 24px;
             font-size: 0.95rem;
             font-weight: 600;
             border-radius: 8px;
@@ -104,6 +110,7 @@
             cursor: pointer;
             transition: all 0.2s ease;
             border: 1px solid transparent;
+            min-height: 48px; /* Touch target accessibility */
         }
 
         .btn-primary {
@@ -181,16 +188,20 @@
         .hero-image-wrapper {
             position: relative;
             text-align: center;
+            margin: 0 auto;
+            max-width: 360px;
+            width: 100%;
         }
 
         .hero-image-wrapper img {
             width: 100%;
-            max-width: 360px;
-            height: 440px;
+            height: auto;
+            aspect-ratio: 4 / 5;
             object-fit: cover;
             border-radius: var(--radius);
             box-shadow: var(--shadow-lg);
             border: 4px solid #ffffff;
+            display: block;
         }
 
         .quote-pill {
@@ -296,7 +307,7 @@
 
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 28px;
         }
 
@@ -376,12 +387,22 @@
             color: var(--primary);
             font-size: 0.8rem;
             font-weight: 600;
-            padding: 4px 10px;
+            padding: 6px 12px;
             border-radius: 6px;
             margin: 0 4px 6px 0;
         }
 
         /* --- Form Elements --- */
+        .contact-box {
+            max-width: 640px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px;
+            box-shadow: var(--shadow-sm);
+        }
+
         .form-group {
             margin-bottom: 16px;
         }
@@ -396,12 +417,19 @@
 
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 10px 12px;
+            padding: 12px 14px;
             border: 1px solid var(--border);
             border-radius: 6px;
             font-family: inherit;
-            font-size: 0.95rem;
+            font-size: 16px; /* Prevents auto-zoom on iOS Safari */
             background: #ffffff;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
         }
 
         /* --- Footer --- */
@@ -426,18 +454,113 @@
             font-size: 0.9rem;
         }
 
+        /* =========================================
+           Mobile & Tablet Optimizations (@media)
+           ========================================= */
         @media (max-width: 840px) {
-            .hero-grid, .bio-grid {
+            .nav-inner {
+                height: auto;
+                padding: 16px 0;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav a {
+                margin-left: 0;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 40px 0 36px;
+            }
+
+            .hero-grid {
                 grid-template-columns: 1fr;
+                gap: 36px;
+                text-align: center;
             }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+
             .hero-image-wrapper {
                 order: -1;
+                max-width: 280px;
+                margin-bottom: 12px;
             }
+
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.15rem;
+            }
+
+            .hero p {
+                font-size: 1.02rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px 16px;
+            }
+
+            .callout-section {
+                padding: 40px 16px;
+                margin: 24px 0 48px;
+            }
+
+            .fallacy-box h2 {
+                font-size: 1.5rem;
+            }
+
+            .fallacy-box p {
+                font-size: 0.98rem;
+            }
+
+            .bio-section {
+                padding: 28px 20px;
+            }
+
+            .bio-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .contact-box {
+                padding: 24px 18px;
+            }
+
+            .footer-grid {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero h1 {
+                font-size: 1.85rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
             }
         }
     </style>
@@ -462,7 +585,7 @@
             <div class="hero-grid">
                 <div>
                     <span class="tagline-badge">Empirical Strategy & Program Evaluation</span>
-                    <h1>Stop mistaking sequence for causation.</h1>
+                    <h1>Stop mistaking sequence for consequence.</h1>
                     <p>
                         Most organizations assume that because outcome <em>Y</em> followed initiative <em>X</em>, <em>X</em> must have caused it. Proper Hoc Consulting brings doctorate-level econometrics, quasi-experimental methods, and objective evaluation rigor to strategic decision-making.
                     </p>
@@ -472,7 +595,6 @@
                     </div>
                 </div>
                 <div class="hero-image-wrapper">
-                    <!-- Headshot image reference -->
                     <img src="headshot.PNG" alt="Jeffrey Harding, Ph.D." onerror="this.src='headshot.png'">
                     <div class="quote-pill">Jeffrey Harding, Ph.D. • Principal</div>
                 </div>
@@ -498,7 +620,7 @@
                 </div>
                 <div class="stat-item">
                     <h3>Executive</h3>
-                    <p>Policy & Board-Level Advisory</p>
+                    <p>Policy & Strategic Advisory</p>
                 </div>
             </div>
         </div>
@@ -528,12 +650,12 @@
                 <!-- Card 1 -->
                 <div class="service-card">
                     <div>
-                        <h3>Rigorous Program Evaluation</h3>
-                        <p>Causal attribution modeling designed to isolate actual program effects from external market noise, selection bias, and organic drift.</p>
+                        <h3>Causal Program Evaluation</h3>
+                        <p>Empirical evaluation designs built to isolate true program effects from external market trends, selection bias, and organic drift.</p>
                         <ul>
-                            <li>Quasi-experimental designs (Diff-in-Diff, RDD, Propensity Score Matching)</li>
-                            <li>Outcome attribution & return on investment (ROI) verification</li>
-                            <li>Grant, board, and regulatory compliance reporting</li>
+                            <li>Quasi-experimental architectures (Diff-in-Diff, RDD, Matching)</li>
+                            <li>Counterfactual modeling & decision-grade evidence generation</li>
+                            <li>Longitudinal cohort tracking & impact validation</li>
                         </ul>
                     </div>
                     <a href="#contact" class="btn btn-outline">Scope Evaluation</a>
@@ -547,7 +669,7 @@
                         <ul>
                             <li>Logic model design & theory-of-change validation</li>
                             <li>Strategic goal prioritization & KPI architecture</li>
-                            <li>Stakeholder facilitation & executive alignment</li>
+                            <li>Executive alignment & leadership facilitation</li>
                         </ul>
                     </div>
                     <a href="#contact" class="btn btn-outline">Plan Strategic Engagement</a>
@@ -556,12 +678,12 @@
                 <!-- Card 3 -->
                 <div class="service-card">
                     <div>
-                        <h3>Executive Advisory & Metric Audits</h3>
-                        <p>Independent, third-party review of organizational initiatives, internal accountability metrics, and strategic assumptions.</p>
+                        <h3>Executive Advisory & Methodology Reviews</h3>
+                        <p>Independent, third-party review of organizational initiatives, internal performance metrics, and strategic assumptions.</p>
                         <ul>
                             <li>Pre-launch initiative reviews & logic verification</li>
                             <li>Econometric modeling & longitudinal trend analysis</li>
-                            <li>Executive advisory & board sounding board</li>
+                            <li>Methodological advisory & strategic sounding board</li>
                         </ul>
                     </div>
                     <a href="#contact" class="btn btn-outline">Schedule Advisory Review</a>
@@ -578,10 +700,10 @@
                     <span class="tagline-badge">Leadership</span>
                     <h3>Dr. Jeffrey Harding</h3>
                     <p>
-                        With a background spanning senior research scientist leadership within large-scale public administration, directing R&D innovation labs at Cognia, and published empirical scholarship, Dr. Harding bridges methodological rigor and real-world strategic execution[span_1](start_span)[span_1](end_span).
+                        With a background spanning senior research scientist leadership within large-scale public administration, directing R&D innovation labs at Cognia, and published empirical scholarship, Dr. Harding bridges methodological rigor and real-world strategic execution[span_0](start_span)[span_0](end_span).
                     </p>
                     <p>
-                        Having analyzed millions of administrative data points and advised enterprise directors, superintendents, and executive leadership, Proper Hoc Consulting brings tier-one empirical rigor to organizations of all scales[span_2](start_span)[span_2](end_span).
+                        Having analyzed millions of administrative data points and advised enterprise leaders, directors, and superintendents, Proper Hoc Consulting brings tier-one empirical rigor to organizations of all scales[span_1](start_span)[span_1](end_span).
                     </p>
                 </div>
                 <div>
@@ -597,9 +719,9 @@
                         <span class="method-tag">Theory-of-Change Validation</span>
                     </div>
                     <h3 style="font-size: 1.25rem; margin-top: 16px;">Academic Background</h3>
-                    <p style="font-size: 0.92rem; margin-bottom: 4px;"><strong>Ph.D. Higher Education</strong> — University of Georgia[span_3](start_span)[span_3](end_span)</p>
-                    <p style="font-size: 0.92rem; margin-bottom: 4px;"><strong>M.Ed. Higher Education Administration</strong> — Vanderbilt University[span_4](start_span)[span_4](end_span)</p>
-                    <p style="font-size: 0.92rem;"><strong>B.A. English</strong> — Middle Tennessee State University[span_5](start_span)[span_5](end_span)</p>
+                    <p style="font-size: 0.92rem; margin-bottom: 4px;"><strong>Ph.D. Higher Education</strong> — University of Georgia[span_2](start_span)[span_2](end_span)</p>
+                    <p style="font-size: 0.92rem; margin-bottom: 4px;"><strong>M.Ed. Higher Education Administration</strong> — Vanderbilt University[span_3](start_span)[span_3](end_span)</p>
+                    <p style="font-size: 0.92rem;"><strong>B.A. English</strong> — Middle Tennessee State University[span_4](start_span)[span_4](end_span)</p>
                 </div>
             </div>
         </div>
@@ -607,7 +729,7 @@
 
     <!-- Contact Section -->
     <section class="container" id="contact" style="padding-bottom: 80px;">
-        <div style="max-width: 640px; margin: 0 auto; background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow-sm);">
+        <div class="contact-box">
             <h2 style="font-size: 1.8rem; color: var(--primary); text-align: center; margin-bottom: 8px;">Initiate a Consultation</h2>
             <p style="text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">Send a note to schedule an introductory strategy session.</p>
             
