@@ -6,12 +6,12 @@
     <title>Proper Hoc Consulting | Strategic Planning & Program Evaluation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0f172a;       /* Deep Slate/Navy */
+            --primary: #0f172a;       /* Deep Executive Slate */
             --primary-light: #1e293b;
-            --accent: #b45309;        /* Warm Amber/Bronze */
+            --accent: #b45309;        /* Warm Amber / Bronze */
             --accent-soft: #fef3c7;
             --bg: #f8fafc;
             --card-bg: #ffffff;
@@ -44,12 +44,12 @@
         }
 
         .container {
-            max-width: 1120px;
+            max-width: 1140px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* --- Header / Nav --- */
+        /* --- Header / Navigation --- */
         header {
             background: #ffffff;
             border-bottom: 1px solid var(--border);
@@ -96,7 +96,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 10px 20px;
+            padding: 10px 22px;
             font-size: 0.95rem;
             font-weight: 600;
             border-radius: 8px;
@@ -136,12 +136,12 @@
 
         /* --- Hero Section --- */
         .hero {
-            padding: 72px 0 56px;
+            padding: 72px 0 60px;
         }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+            grid-template-columns: 1.25fr 0.75fr;
             gap: 48px;
             align-items: center;
         }
@@ -161,13 +161,13 @@
 
         .hero h1 {
             font-size: 2.85rem;
-            line-height: 1.15;
+            line-height: 1.18;
             color: var(--primary);
             margin-bottom: 20px;
         }
 
         .hero p {
-            font-size: 1.15rem;
+            font-size: 1.12rem;
             color: var(--text-muted);
             margin-bottom: 28px;
         }
@@ -209,46 +209,77 @@
             border: 1px solid var(--border);
         }
 
-        /* --- Framework / Problem Section --- */
-        .callout-section {
+        /* --- Stats / Credibility Bar --- */
+        .credibility-bar {
             background: #ffffff;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 48px 0;
-            margin: 40px 0;
+            padding: 32px 0;
+            margin: 32px 0 56px;
         }
 
-        .fallacy-box {
-            max-width: 800px;
-            margin: 0 auto;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
             text-align: center;
         }
 
-        .fallacy-box h2 {
-            font-size: 1.6rem;
+        .stat-item h3 {
+            font-size: 1.85rem;
             color: var(--primary);
-            margin-bottom: 12px;
+            margin-bottom: 4px;
+        }
+
+        .stat-item p {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- Fallacy Callout --- */
+        .callout-section {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 56px 0;
+            margin: 40px 0 64px;
+            border-radius: var(--radius);
+        }
+
+        .fallacy-box {
+            max-width: 820px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 24px;
+        }
+
+        .fallacy-box h2 {
+            font-size: 1.9rem;
+            color: #ffffff;
+            margin-bottom: 16px;
         }
 
         .fallacy-box p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            line-height: 1.7;
         }
 
         .fallacy-latin {
             font-style: italic;
-            color: var(--accent);
-            font-weight: 600;
+            color: #fcd34d;
         }
 
         /* --- Services --- */
         .services-section {
-            padding: 48px 0 64px;
+            padding: 24px 0 64px;
         }
 
         .section-header {
             text-align: center;
-            max-width: 600px;
+            max-width: 680px;
             margin: 0 auto 48px;
         }
 
@@ -256,6 +287,11 @@
             font-size: 2.2rem;
             color: var(--primary);
             margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
         }
 
         .service-grid {
@@ -276,14 +312,14 @@
         }
 
         .service-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             color: var(--primary);
             margin-bottom: 12px;
         }
 
         .service-card p {
             color: var(--text-muted);
-            font-size: 0.98rem;
+            font-size: 0.95rem;
             margin-bottom: 20px;
         }
 
@@ -293,11 +329,11 @@
         }
 
         .service-card li {
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             color: var(--text-main);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 8px;
         }
 
@@ -307,7 +343,45 @@
             font-weight: bold;
         }
 
-        /* --- Interactive Estimator --- */
+        /* --- Principal Bio Section --- */
+        .bio-section {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 48px;
+            margin-bottom: 64px;
+        }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .bio-grid h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .bio-grid p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+        }
+
+        .method-tag {
+            display: inline-block;
+            background: #f1f5f9;
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin: 0 4px 6px 0;
+        }
+
+        /* --- Estimator --- */
         .estimator-section {
             background: #ffffff;
             border: 1px solid var(--border);
@@ -319,7 +393,7 @@
 
         .estimator-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.1fr 0.9fr;
             gap: 36px;
             align-items: center;
         }
@@ -350,7 +424,7 @@
             background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 24px;
+            padding: 28px;
             text-align: center;
         }
 
@@ -383,9 +457,12 @@
             font-size: 0.9rem;
         }
 
-        @media (max-width: 768px) {
-            .hero-grid, .estimator-grid {
+        @media (max-width: 840px) {
+            .hero-grid, .estimator-grid, .bio-grid {
                 grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
             }
             .hero-image-wrapper {
                 order: -1;
@@ -398,120 +475,188 @@
 </head>
 <body>
 
+    <!-- Navigation -->
     <header>
         <div class="container nav-inner">
             <a href="#" class="logo">Proper Hoc <span>Consulting</span></a>
             <nav>
-                <a href="#services">Services</a>
-                <a href="#estimator">Estimate Scope</a>
-                <a href="#contact" class="btn btn-primary">Book Consultation</a>
+                <a href="#services">Practice Areas</a>
+                <a href="#credentials">Background</a>
+                <a href="#estimator">Scope Estimator</a>
+                <a href="#contact" class="btn btn-primary">Connect</a>
             </nav>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-grid">
                 <div>
-                    <span class="tagline-badge">Strategy & Program Evaluation</span>
-                    <h1>Stop guessing what’s actually moving the needle.</h1>
+                    <span class="tagline-badge">Empirical Strategy & Program Evaluation</span>
+                    <h1>Stop mistaking sequence for causation.</h1>
                     <p>
-                        Most organizations assume that because outcome <em>Y</em> followed initiative <em>X</em>, <em>X</em> must have caused it. Proper Hoc Consulting brings methodological rigor, executive clarity, and defensible data to your strategic roadmap.
+                        Most organizations assume that because outcome <em>Y</em> followed initiative <em>X</em>, <em>X</em> must have caused it. Proper Hoc Consulting brings doctorate-level econometrics, quasi-experimental methods, and enterprise evaluation rigor to strategic decision-making.
                     </p>
                     <div class="hero-actions">
-                        <a href="#contact" class="btn btn-accent">Schedule Advisory Call</a>
+                        <a href="#contact" class="btn btn-accent">Initiate Advisory Discussion</a>
                         <a href="#services" class="btn btn-outline">Explore Capabilities</a>
                     </div>
                 </div>
                 <div class="hero-image-wrapper">
-                    <img src="headshot.png" alt="Proper Hoc Consulting Principal" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'">
-                    <div class="quote-pill">Data-Grounded • Execution-Focused</div>
+                    <img src="headshot.png" alt="Jeffrey Harding, Ph.D." onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'">
+                    <div class="quote-pill">Jeffrey Harding, Ph.D. • Principal</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="callout-section">
+    <!-- Credibility Stats Bar -->
+    <div class="credibility-bar">
         <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>Ph.D.</h3>
+                    <p>Higher Education Research (UGA)</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Millions</h3>
+                    <p>Administrative Records Analyzed</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Rigor-Driven</h3>
+                    <p>Quasi-Experimental Design</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Executive</h3>
+                    <p>Policy & Board-Level Advisory</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fallacy Callout -->
+    <div class="container">
+        <div class="callout-section">
             <div class="fallacy-box">
                 <h2>The Premise: <span class="fallacy-latin">Post hoc ergo propter hoc</span></h2>
                 <p>
-                    "After this, therefore because of this." It is the single most common logical fallacy draining budgets and misdirecting leadership. We replace assumptions with verifiable frameworks so you invest where impact is real.
+                    "After this, therefore because of this." It is the single most persistent logical fallacy draining organizational budgets and misdirecting leadership. We replace guesswork and spurious correlation with counterfactual frameworks so you invest where impact is verifiable.
                 </p>
             </div>
         </div>
-    </section>
+    </div>
 
+    <!-- Practice Areas / Services -->
     <section class="services-section" id="services">
         <div class="container">
             <div class="section-header">
-                <h2>Advisory Practice Areas</h2>
-                <p>Targeted engagements designed to give executive teams clarity, alignment, and actionable metrics.</p>
+                <h2>Methodological Capabilities</h2>
+                <p>Independent evaluation and strategic architecture built on empirical research standards.</p>
             </div>
             
             <div class="service-grid">
+                <!-- Card 1 -->
                 <div class="service-card">
                     <div>
-                        <h3>Strategic Planning</h3>
-                        <p>Practical, execution-focused strategic plans that align leadership, allocate resources effectively, and establish measurable milestones.</p>
+                        <h3>Rigorous Program Evaluation</h3>
+                        <p>Causal attribution modeling designed to isolate actual program effects from external market noise, selection bias, and organic drift.</p>
                         <ul>
-                            <li>Organizational roadmapping & goal alignment</li>
-                            <li>Resource allocation modeling</li>
-                            <li>Executive facilitation & KPI design</li>
+                            <li>Quasi-experimental designs (Diff-in-Diff, RDD, Propensity Score Matching)</li>
+                            <li>Outcome attribution & return on investment (ROI) verification</li>
+                            <li>Grant, board, and regulatory compliance reporting</li>
                         </ul>
                     </div>
-                    <a href="#contact" class="btn btn-outline">Plan an Engagement</a>
+                    <a href="#contact" class="btn btn-outline">Scope Evaluation</a>
                 </div>
 
+                <!-- Card 2 -->
                 <div class="service-card">
                     <div>
-                        <h3>Program Evaluation</h3>
-                        <p>Rigorous, objective evaluation models designed to measure real intervention impact and separate progress from random correlation.</p>
+                        <h3>Strategic Roadmapping & Logic Models</h3>
+                        <p>Bridging organizational ambition with measurable milestones, clear key performance indicators, and defensible resource allocation.</p>
                         <ul>
-                            <li>Quantitative & qualitative assessment</li>
-                            <li>Outcome attribution & ROI analysis</li>
-                            <li>Grant and stakeholder reporting</li>
+                            <li>Logic model design & theory-of-change validation</li>
+                            <li>Strategic goal prioritization & KPI architecture</li>
+                            <li>Stakeholder facilitation & executive alignment</li>
                         </ul>
                     </div>
-                    <a href="#contact" class="btn btn-outline">Evaluate a Program</a>
+                    <a href="#contact" class="btn btn-outline">Plan Strategic Engagement</a>
                 </div>
 
+                <!-- Card 3 -->
                 <div class="service-card">
                     <div>
-                        <h3>Advisory & Stress Testing</h3>
-                        <p>Objective third-party review of current initiatives, internal metrics, and strategic assumptions before capital is deployed.</p>
+                        <h3>Data Science & Metric Stress-Testing</h3>
+                        <p>Objective audit and stress-testing of current data pipelines, internal accountability metrics, and reporting assumptions.</p>
                         <ul>
-                            <li>Pre-launch logic-model verification</li>
-                            <li>Board-level evaluation audits</li>
-                            <li>Ongoing executive sounding board</li>
+                            <li>Pre-launch initiative risk & metric stress-testing</li>
+                            <li>Econometric modeling, survival analysis, & predictive pipelines</li>
+                            <li>Executive advisory & board sounding board</li>
                         </ul>
                     </div>
-                    <a href="#contact" class="btn btn-outline">Inquire on Retainers</a>
+                    <a href="#contact" class="btn btn-outline">Audit Metrics</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Principal & Methodological Background -->
+    <section class="container" id="credentials">
+        <div class="bio-section">
+            <div class="bio-grid">
+                <div>
+                    <span class="tagline-badge">Leadership</span>
+                    <h3>Dr. Jeffrey Harding</h3>
+                    <p>
+                        With a background spanning senior research leadership at the Georgia Department of Education, directing R&D innovation labs at Cognia, and published empirical scholarship, Dr. Harding bridges methodological rigor and real-world strategic execution.
+                    </p>
+                    <p>
+                        Having analyzed millions of administrative data points and advised state superintendents, directors, and executive leadership, Proper Hoc Consulting brings tier-one empirical rigor to organizations of all scales.
+                    </p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.25rem;">Core Methodological Frameworks</h3>
+                    <div style="margin-bottom: 20px;">
+                        <span class="method-tag">Difference-in-Differences (DiD)</span>
+                        <span class="method-tag">Regression Discontinuity (RDD)</span>
+                        <span class="method-tag">Propensity Score Matching</span>
+                        <span class="method-tag">Econometric Modeling</span>
+                        <span class="method-tag">Survival Analysis</span>
+                        <span class="method-tag">Machine Learning / NLP</span>
+                        <span class="method-tag">Panel Data Estimation</span>
+                        <span class="method-tag">Logic Modeling</span>
+                    </div>
+                    <h3 style="font-size: 1.25rem; margin-top: 16px;">Academic Background</h3>
+                    <p style="font-size: 0.92rem; margin-bottom: 4px;"><strong>Ph.D. Higher Education</strong> — University of Georgia</p>
+                    <p style="font-size: 0.92rem; margin-bottom: 4px;"><strong>M.Ed. Higher Education Administration</strong> — Vanderbilt University</p>
+                    <p style="font-size: 0.92rem;"><strong>B.A. English</strong> — Middle Tennessee State University</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Scope Estimator -->
     <section class="container" id="estimator">
         <div class="estimator-section">
             <div class="estimator-grid">
                 <div>
-                    <h2 style="font-size: 1.8rem; margin-bottom: 12px; color: var(--primary);">Engagement Estimator</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Select your organizational requirements to get an indicative scope and budget framework for project-based advisory.</p>
+                    <h2 style="font-size: 1.8rem; margin-bottom: 12px; color: var(--primary);">Engagement Scope Estimator</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;">Select your project requirements to calculate an initial advisory timeline and framework.</p>
                     
                     <div class="form-group">
                         <label for="serviceType">Primary Practice Area</label>
                         <select id="serviceType" onchange="calculateEstimate()">
-                            <option value="eval">Program Evaluation & Impact Study</option>
-                            <option value="strat">Full Strategic Planning Roadmap</option>
-                            <option value="audit">Strategic Stress Test / Audit</option>
+                            <option value="eval">Causal Program Evaluation & Impact Study</option>
+                            <option value="strat">Strategic Planning & KPI Architecture</option>
+                            <option value="audit">Metric Audit & Logic Model Stress-Test</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="orgSize">Organization / Initiative Scope</label>
+                        <label for="orgSize">Scope of Initiative</label>
                         <select id="orgSize" onchange="calculateEstimate()">
-                            <option value="single">Single Department / Pilot Program</option>
+                            <option value="single">Single Initiative / Pilot Program</option>
                             <option value="mid">Mid-Market / Multi-Program Entity</option>
                             <option value="enterprise">Enterprise / Statewide System</option>
                         </select>
@@ -519,19 +664,20 @@
                 </div>
 
                 <div class="estimate-output">
-                    <span style="text-transform: uppercase; font-size: 0.78rem; font-weight: 700; color: var(--accent); letter-spacing: 0.05em;">Estimated Project Scope</span>
+                    <span style="text-transform: uppercase; font-size: 0.78rem; font-weight: 700; color: var(--accent); letter-spacing: 0.05em;">Estimated Advisory Scope</span>
                     <div class="estimate-price" id="priceDisplay">$4,500 – $6,500</div>
                     <p id="timelineDisplay" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Typical Duration: 3–4 Weeks</p>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Discuss This Engagement</a>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Discuss Engagement</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section class="container" id="contact" style="padding-bottom: 80px;">
         <div style="max-width: 640px; margin: 0 auto; background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow-sm);">
-            <h2 style="font-size: 1.8rem; color: var(--primary); text-align: center; margin-bottom: 8px;">Start a Conversation</h2>
-            <p style="text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">Drop a note to schedule an introductory call or discuss your upcoming initiative.</p>
+            <h2 style="font-size: 1.8rem; color: var(--primary); text-align: center; margin-bottom: 8px;">Initiate a Consultation</h2>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">Send a note to schedule an introductory strategy session.</p>
             
             <form onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
@@ -544,19 +690,23 @@
                 </div>
                 <div class="form-group">
                     <label>Initiative / Focus Area</label>
-                    <textarea rows="3" placeholder="Briefly describe the program or strategy challenge..."></textarea>
+                    <textarea rows="3" placeholder="Briefly describe the program, strategy, or evaluation needs..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-accent" style="width: 100%;">Send Inquiry</button>
             </form>
+            <div style="text-align: center; margin-top: 16px;">
+                <span style="font-size: 0.88rem; color: var(--text-muted);">Direct: <a href="mailto:Jeff@properhoc.pro" style="color: var(--primary); font-weight: 600; text-decoration: none;">Jeff@properhoc.pro</a></span>
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div>
                     <h3 style="font-size: 1.2rem; margin-bottom: 4px;">Proper Hoc Consulting</h3>
-                    <p class="footer-text">Strategic Planning • Rigorous Program Evaluation • Defensible Outcomes</p>
+                    <p class="footer-text">Strategic Roadmapping • Econometric Evaluation • Defensible Outcomes</p>
                 </div>
                 <div class="footer-text">
                     &copy; 2026 Proper Hoc Consulting. All rights reserved.
@@ -565,6 +715,7 @@
         </div>
     </footer>
 
+    <!-- Estimation Script -->
     <script>
         function calculateEstimate() {
             const service = document.getElementById('serviceType').value;
