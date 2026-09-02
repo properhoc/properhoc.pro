@@ -70,19 +70,17 @@
             height: 72px;
         }
 
-        .logo {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
+        .logo-link {
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            white-space: nowrap;
+            text-decoration: none;
         }
 
-        .logo span {
-            color: var(--accent);
+        .site-logo {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            display: block;
         }
 
         nav a {
@@ -110,7 +108,7 @@
             cursor: pointer;
             transition: all 0.2s ease;
             border: 1px solid transparent;
-            min-height: 48px; /* Touch target accessibility */
+            min-height: 48px;
         }
 
         .btn-primary {
@@ -421,7 +419,7 @@
             border: 1px solid var(--border);
             border-radius: 6px;
             font-family: inherit;
-            font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+            font-size: 16px;
             background: #ffffff;
             appearance: none;
             -webkit-appearance: none;
@@ -570,7 +568,9 @@
     <!-- Navigation -->
     <header>
         <div class="container nav-inner">
-            <a href="#" class="logo">Proper Hoc <span>Consulting</span></a>
+            <a href="#" class="logo-link">
+                <img src="logo.png" alt="Proper Hoc Consulting" class="site-logo">
+            </a>
             <nav>
                 <a href="#services">Practice Areas</a>
                 <a href="#credentials">Background</a>
@@ -692,7 +692,7 @@
         </div>
     </section>
 
-        <!-- Principal & Methodological Background -->
+    <!-- Principal & Methodological Background -->
     <section class="container" id="credentials">
         <div class="bio-section">
             <div class="bio-grid">
