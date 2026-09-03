@@ -3,109 +3,244 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alpharetta Electric Co. Ledger</title>
+  <title>Bubble Rock Advisors | Advisory Practice Ledger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f8fafc;
       --card-bg: #ffffff;
-      --text: #0f172a;
       --border: #e2e8f0;
-      --primary: #2563eb;
-      --green: #16a34a;
-      --red: #dc2626;
+      --border-focus: #0284c7;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #0369a1;
+      --primary-hover: #0284c7;
+      --accent: #0ea5e9;
+      --profit: #15803d;
+      --loss: #b91c1c;
     }
+
+    * { box-sizing: border-box; }
+
     body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
       margin: 0;
-      padding: 24px;
+      padding: 36px 16px;
+      line-height: 1.5;
     }
-    .container { max-width: 900px; margin: 0 auto; }
-    .header { margin-bottom: 24px; }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Bubble Rock Header */
+    .header {
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: gap;
+      gap: 16px;
+    }
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 0 0 4px 0;
+      letter-spacing: -0.02em;
+    }
+    .brand-title span {
+      color: var(--accent);
+    }
+    .brand-sub {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    .site-tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      background: #e0f2fe;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #bae6fd;
+    }
+
+    /* Metric Summary Cards */
     .metrics {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
     .card {
       background: var(--card-bg);
-      padding: 16px 20px;
-      border-radius: 8px;
+      padding: 20px 24px;
+      border-radius: 10px;
       border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     }
-    .card-title { font-size: 0.85rem; color: #64748b; margin-bottom: 4px; }
-    .card-value { font-size: 1.5rem; font-weight: 700; }
-    .card-value.income { color: var(--green); }
-    .card-value.expense { color: var(--red); }
-    
+    .card-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .card-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .card-value.income { color: var(--profit); }
+    .card-value.expense { color: var(--loss); }
+
+    /* Entry Form */
     form {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 12px;
       background: var(--card-bg);
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       border: 1px solid var(--border);
-      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      margin-bottom: 28px;
     }
     input, select, button {
-      padding: 8px 12px;
+      padding: 10px 14px;
       border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text-main);
       border-radius: 6px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    input:focus, select:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
     }
     button.primary {
       background: var(--primary);
-      color: white;
-      border: none;
+      color: #fff;
       font-weight: 600;
+      border: none;
       cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+    button.primary:hover {
+      background: var(--primary-hover);
     }
     button.secondary {
       background: #f1f5f9;
       color: #334155;
+      font-weight: 600;
+      font-size: 0.85rem;
       border: 1px solid var(--border);
       cursor: pointer;
+    }
+    button.secondary:hover {
+      background: #e2e8f0;
+    }
+
+    /* Ledger Table */
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .table-header h3 {
+      font-size: 1.1rem;
+      margin: 0;
+      font-weight: 600;
     }
     .table-container {
       background: var(--card-bg);
-      border-radius: 8px;
       border: 1px solid var(--border);
+      border-radius: 10px;
       overflow-x: auto;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     }
-    table { width: 100%; border-collapse: collapse; text-align: left; }
-    th, td { padding: 12px 16px; border-bottom: 1px solid var(--border); }
-    th { background: #f8fafc; font-size: 0.85rem; color: #475569; }
-    .actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th, td {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    th {
+      background: #f8fafc;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+    }
+    .pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .pill-rev { background: #dcfce7; color: #166534; }
+    .pill-exp { background: #fee2e2; color: #991b1b; }
     .delete-btn {
-      color: var(--red);
+      color: var(--text-muted);
       background: none;
       border: none;
       cursor: pointer;
-      font-weight: bold;
+      font-size: 1.2rem;
+      padding: 0;
+      line-height: 1;
     }
+    .delete-btn:hover { color: var(--loss); }
   </style>
 </head>
 <body>
 <div class="container">
+
   <div class="header">
-    <h1>Alpharetta Electric Co. Ledger</h1>
-    <p>Schedule C Friendly Income & Expense Log</p>
+    <div>
+      <h1 class="brand-title">Bubble Rock <span>Advisors</span></h1>
+      <p class="brand-sub">Practice Revenue, Expense & Tax Ledger</p>
+    </div>
+    <a href="https://www.bubblerockadvisors.com/" target="_blank" rel="noopener" class="site-tag">bubblerockadvisors.com &rarr;</a>
   </div>
 
   <div class="metrics">
     <div class="card">
-      <div class="card-title">Gross Revenue</div>
+      <div class="card-title">Gross Invoiced Revenue</div>
       <div class="card-value income" id="total-revenue">$0.00</div>
     </div>
     <div class="card">
-      <div class="card-title">Total Expenses</div>
+      <div class="card-title">Practice Operating Costs</div>
       <div class="card-value expense" id="total-expenses">$0.00</div>
     </div>
     <div class="card">
-      <div class="card-title">Net Profit / Loss</div>
+      <div class="card-title">Net Operating Profit</div>
       <div class="card-value" id="net-profit">$0.00</div>
     </div>
   </div>
@@ -113,27 +248,27 @@
   <form id="entry-form">
     <input type="date" id="date" required />
     <select id="type" required>
-      <option value="revenue">Revenue</option>
-      <option value="expense">Expense</option>
+      <option value="revenue">Revenue (+)</option>
+      <option value="expense">Expense (-)</option>
     </select>
     <select id="category" required>
-      <option value="Performance / Gig Income">Gig / Performance Income</option>
-      <option value="Chart / Music Sales">Chart / App Sales</option>
-      <option value="Supplies & Equipment">Supplies & Instruments</option>
-      <option value="Software & Subscriptions">Software & Web Hosting</option>
-      <option value="Travel & Mileage">Travel / Transport</option>
-      <option value="Legal & Professional">Legal & Professional Services</option>
-      <option value="Advertising">Marketing & Promotion</option>
-      <option value="Other">Other</option>
+      <option value="Advisory & Retainers">Advisory / Retainer Fees</option>
+      <option value="Project Consulting">Project Consulting</option>
+      <option value="Software & Cloud SaaS">Software, Subscriptions & SaaS</option>
+      <option value="Professional & Legal">Professional & Legal Services</option>
+      <option value="Client Travel & Meals">Travel, Transit & Client Meals</option>
+      <option value="Marketing & Brand">Marketing & Growth</option>
+      <option value="Office & Operations">Office & Operations</option>
+      <option value="Other">Other Operating Cost</option>
     </select>
-    <input type="text" id="description" placeholder="Description / Vendor" required />
+    <input type="text" id="description" placeholder="Client, Vendor, or Memo" required />
     <input type="number" id="amount" placeholder="0.00" step="0.01" min="0" required />
-    <button type="submit" class="primary">Add Entry</button>
+    <button type="submit" class="primary">Record Item</button>
   </form>
 
-  <div class="actions">
-    <h3>Transaction Records</h3>
-    <button class="secondary" onclick="exportToCSV()">Export CSV for CPA</button>
+  <div class="table-header">
+    <h3>Transaction Journal</h3>
+    <button class="secondary" onclick="exportToCSV()">Export for CPA (CSV)</button>
   </div>
 
   <div class="table-container">
@@ -141,25 +276,27 @@
       <thead>
         <tr>
           <th>Date</th>
-          <th>Type</th>
-          <th>Category</th>
-          <th>Description</th>
+          <th>Flow</th>
+          <th>Account Code</th>
+          <th>Client / Memo</th>
           <th>Amount</th>
-          <th>Action</th>
+          <th></th>
         </tr>
       </thead>
       <tbody id="ledger-body"></tbody>
     </table>
   </div>
+
 </div>
 
 <script>
-  let entries = JSON.parse(localStorage.getItem('aec_ledger') || '[]');
+  // Uses dedicated storage key for Bubble Rock data
+  let entries = JSON.parse(localStorage.getItem('bra_ledger') || '[]');
 
   document.getElementById('date').valueAsDate = new Date();
 
   function saveAndRender() {
-    localStorage.setItem('aec_ledger', JSON.stringify(entries));
+    localStorage.setItem('bra_ledger', JSON.stringify(entries));
     const tbody = document.getElementById('ledger-body');
     tbody.innerHTML = '';
 
@@ -169,19 +306,25 @@
     entries.slice().reverse().forEach((item, index) => {
       const realIndex = entries.length - 1 - index;
       const amount = parseFloat(item.amount);
-      if (item.type === 'revenue') totalRev += amount;
+      const isRev = item.type === 'revenue';
+
+      if (isRev) totalRev += amount;
       else totalExp += amount;
 
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${item.date}</td>
-        <td><strong>${item.type.toUpperCase()}</strong></td>
-        <td>${item.category}</td>
-        <td>${item.description}</td>
-        <td style="color: ${item.type === 'revenue' ? 'var(--green)' : 'var(--red)'}">
-          ${item.type === 'revenue' ? '+' : '-'}$${amount.toFixed(2)}
+        <td style="color: var(--text-muted); font-size: 0.85rem;">${item.date}</td>
+        <td>
+          <span class="pill ${isRev ? 'pill-rev' : 'pill-exp'}">
+            ${isRev ? 'INCOME' : 'EXPENSE'}
+          </span>
         </td>
-        <td><button class="delete-btn" onclick="deleteEntry(${realIndex})">&times;</button></td>
+        <td>${item.category}</td>
+        <td><strong>${item.description}</strong></td>
+        <td class="amount" style="color: ${isRev ? 'var(--profit)' : 'var(--loss)'}">
+          ${isRev ? '+' : '-'}$${amount.toFixed(2)}
+        </td>
+        <td style="text-align: right;"><button class="delete-btn" title="Void Entry" onclick="deleteEntry(${realIndex})">&times;</button></td>
       `;
       tbody.appendChild(tr);
     });
@@ -191,7 +334,7 @@
     const net = totalRev - totalExp;
     const netEl = document.getElementById('net-profit');
     netEl.innerText = `${net < 0 ? '-' : ''}$${Math.abs(net).toFixed(2)}`;
-    netEl.style.color = net >= 0 ? 'var(--green)' : 'var(--red)';
+    netEl.style.color = net >= 0 ? 'var(--profit)' : 'var(--loss)';
   }
 
   document.getElementById('entry-form').addEventListener('submit', (e) => {
@@ -214,7 +357,7 @@
   }
 
   function exportToCSV() {
-    if (!entries.length) return alert('No transactions to export.');
+    if (!entries.length) return alert('No ledger records available to export.');
     let csv = 'Date,Type,Category,Description,Amount\n';
     entries.forEach(e => {
       csv += `"${e.date}","${e.type}","${e.category}","${e.description.replace(/"/g, '""')}",${e.amount}\n`;
@@ -222,7 +365,7 @@
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `alpharetta_electric_ledger_${new Date().toISOString().slice(0,10)}.csv`;
+    link.download = `bubble_rock_advisors_ledger_${new Date().toISOString().slice(0,10)}.csv`;
     link.click();
   }
 
