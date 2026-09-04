@@ -20,6 +20,7 @@
       --accent: #0ea5e9;
       --profit: #15803d;
       --loss: #b91c1c;
+      --edit: #d97706;
     }
 
     * { box-sizing: border-box; }
@@ -38,7 +39,6 @@
       margin: 0 auto;
     }
 
-    /* Bubble Rock Header */
     .header {
       margin-bottom: 28px;
       padding-bottom: 20px;
@@ -104,7 +104,6 @@
       border-color: #cbd5e1;
     }
 
-    /* Metric Summary Cards */
     .metrics {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -135,10 +134,9 @@
     .card-value.income { color: var(--profit); }
     .card-value.expense { color: var(--loss); }
 
-    /* Entry Form */
     form {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
       gap: 12px;
       background: var(--card-bg);
       padding: 20px;
@@ -146,6 +144,10 @@
       border: 1px solid var(--border);
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
       margin-bottom: 28px;
+    }
+    form.is-editing {
+      border: 2px solid var(--edit);
+      background: #fffdfa;
     }
     input, select, button {
       padding: 10px 14px;
@@ -173,6 +175,24 @@
     button.primary:hover {
       background: var(--primary-hover);
     }
+    button.edit-mode {
+      background: var(--edit);
+    }
+    button.edit-mode:hover {
+      background: #b45309;
+    }
+    button.cancel-btn {
+      background: #f1f5f9;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+    }
+    button.cancel-btn:hover {
+      background: #e2e8f0;
+      color: var(--text-main);
+    }
     button.secondary {
       background: #f1f5f9;
       color: #334155;
@@ -185,7 +205,6 @@
       background: #e2e8f0;
     }
 
-    /* Ledger Table */
     .table-header {
       display: flex;
       justify-content: space-between;
@@ -235,16 +254,34 @@
     }
     .pill-rev { background: #dcfce7; color: #166534; }
     .pill-exp { background: #fee2e2; color: #991b1b; }
-    .delete-btn {
-      color: var(--text-muted);
+    .row-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .action-btn {
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 1.2rem;
       padding: 0;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .edit-action-btn {
+      color: var(--primary);
+    }
+    .edit-action-btn:hover {
+      text-decoration: underline;
+    }
+    .delete-action-btn {
+      color: var(--text-muted);
+      font-size: 1.2rem;
       line-height: 1;
     }
-    .delete-btn:hover { color: var(--loss); }
+    .delete-action-btn:hover {
+      color: var(--loss);
+    }
   </style>
 </head>
 <body>
@@ -308,7 +345,9 @@
     <datalist id="vendor-options"></datalist>
 
     <input type="number" id="amount" placeholder="0.00" step="0.01" min="0" required />
-    <button type="submit" class="primary">Record Item</button>
+    
+    <button type="submit" id="submit-btn" class="primary">Record Item</button>
+    <button type="button" id="cancel-btn" class="cancel-btn" onclick="cancelEditing()">Cancel</button>
   </form>
 
   <div class="table-header">
@@ -325,7 +364,7 @@
           <th>Account Code</th>
           <th>Vendor / Client</th>
           <th>Amount</th>
-          <th></th>
+          <th style="text-align: right;">Actions</th>
         </tr>
       </thead>
       <tbody id="ledger-body"></tbody>
@@ -359,6 +398,7 @@
   let entries = JSON.parse(localStorage.getItem('bra_ledger') || '[]');
   let customCategories = JSON.parse(localStorage.getItem('bra_categories') || '[]');
   let customVendors = JSON.parse(localStorage.getItem('bra_vendors') || '[]');
+  let editingIndex = null;
 
   document.getElementById('date').valueAsDate = new Date();
 
@@ -413,7 +453,12 @@
         <td class="amount" style="color: ${isRev ? 'var(--profit)' : 'var(--loss)'}">
           ${isRev ? '+' : '-'}$${amount.toFixed(2)}
         </td>
-        <td style="text-align: right;"><button class="delete-btn" title="Void Entry" onclick="deleteEntry(${realIndex})">&times;</button></td>
+        <td style="text-align: right;">
+          <div class="row-actions">
+            <button class="action-btn edit-action-btn" onclick="startEditing(${realIndex})">Edit</button>
+            <button class="action-btn delete-action-btn" title="Void Entry" onclick="deleteEntry(${realIndex})">&times;</button>
+          </div>
+        </td>
       `;
       tbody.appendChild(tr);
     });
@@ -424,6 +469,42 @@
     const netEl = document.getElementById('net-profit');
     netEl.innerText = `${net < 0 ? '-' : ''}$${Math.abs(net).toFixed(2)}`;
     netEl.style.color = net >= 0 ? 'var(--profit)' : 'var(--loss)';
+  }
+
+  function startEditing(index) {
+    editingIndex = index;
+    const entry = entries[index];
+
+    document.getElementById('date').value = entry.date;
+    document.getElementById('type').value = entry.type;
+    document.getElementById('category').value = entry.category;
+    document.getElementById('description').value = entry.description;
+    document.getElementById('amount').value = entry.amount;
+
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.innerText = 'Update Entry';
+    submitBtn.classList.add('edit-mode');
+
+    const form = document.getElementById('entry-form');
+    form.classList.add('is-editing');
+    
+    document.getElementById('cancel-btn').style.display = 'inline-block';
+    window.scrollTo({ top: form.offsetTop - 20, behavior: 'smooth' });
+  }
+
+  function cancelEditing() {
+    editingIndex = null;
+    const form = document.getElementById('entry-form');
+    form.reset();
+    form.classList.remove('is-editing');
+
+    document.getElementById('date').valueAsDate = new Date();
+    
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.innerText = 'Record Item';
+    submitBtn.classList.remove('edit-mode');
+    
+    document.getElementById('cancel-btn').style.display = 'none';
   }
 
   document.getElementById('entry-form').addEventListener('submit', (e) => {
@@ -443,21 +524,31 @@
       renderVendorOptions();
     }
 
-    entries.push({
+    const payload = {
       date: document.getElementById('date').value,
       type: document.getElementById('type').value,
       category: enteredCategory,
       description: enteredVendor,
       amount: parseFloat(document.getElementById('amount').value)
-    });
+    };
 
-    document.getElementById('category').value = '';
-    document.getElementById('description').value = '';
-    document.getElementById('amount').value = '';
+    if (editingIndex !== null) {
+      entries[editingIndex] = payload;
+      cancelEditing();
+    } else {
+      entries.push(payload);
+      document.getElementById('category').value = '';
+      document.getElementById('description').value = '';
+      document.getElementById('amount').value = '';
+    }
+
     saveAndRender();
   });
 
   function deleteEntry(index) {
+    if (editingIndex === index) {
+      cancelEditing();
+    }
     entries.splice(index, 1);
     saveAndRender();
   }
