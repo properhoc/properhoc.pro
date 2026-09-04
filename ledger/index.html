@@ -286,16 +286,15 @@
       <option value="revenue">Revenue (+)</option>
       <option value="expense">Expense (-)</option>
     </select>
-    <select id="category" required>
-      <option value="Advisory & Retainers">Advisory / Retainer Fees</option>
-      <option value="Project Consulting">Project Consulting</option>
-      <option value="Software & Cloud SaaS">Software, Subscriptions & SaaS</option>
-      <option value="Professional & Legal">Professional & Legal Services</option>
-      <option value="Client Travel & Meals">Travel, Transit & Client Meals</option>
-      <option value="Marketing & Brand">Marketing & Growth</option>
-      <option value="Office & Operations">Office & Operations</option>
-      <option value="Other">Other Operating Cost</option>
-    </select>
+    <input 
+      type="text" 
+      id="category" 
+      list="category-options" 
+      placeholder="Select or type category..." 
+      autocomplete="off" 
+      required 
+    />
+    <datalist id="category-options"></datalist>
     <input type="text" id="description" placeholder="Client, Vendor, or Memo" required />
     <input type="number" id="amount" placeholder="0.00" step="0.01" min="0" required />
     <button type="submit" class="primary">Record Item</button>
@@ -325,9 +324,33 @@
 </div>
 
 <script>
+  const DEFAULT_CATEGORIES = [
+    'Advisory & Retainers',
+    'Project Consulting',
+    'Software & Cloud SaaS',
+    'Professional & Legal',
+    'Client Travel & Meals',
+    'Marketing & Brand',
+    'Office & Operations',
+    'Equipment & Gear',
+    'Other Operating Cost'
+  ];
+
   let entries = JSON.parse(localStorage.getItem('bra_ledger') || '[]');
+  let customCategories = JSON.parse(localStorage.getItem('bra_categories') || '[]');
 
   document.getElementById('date').valueAsDate = new Date();
+
+  function renderCategoryOptions() {
+    const datalist = document.getElementById('category-options');
+    datalist.innerHTML = '';
+    const allCategories = Array.from(new Set([...DEFAULT_CATEGORIES, ...customCategories]));
+    allCategories.forEach(cat => {
+      const opt = document.createElement('option');
+      opt.value = cat;
+      datalist.appendChild(opt);
+    });
+  }
 
   function saveAndRender() {
     localStorage.setItem('bra_ledger', JSON.stringify(entries));
@@ -373,13 +396,23 @@
 
   document.getElementById('entry-form').addEventListener('submit', (e) => {
     e.preventDefault();
+    const enteredCategory = document.getElementById('category').value.trim();
+
+    if (enteredCategory && !DEFAULT_CATEGORIES.includes(enteredCategory) && !customCategories.includes(enteredCategory)) {
+      customCategories.push(enteredCategory);
+      localStorage.setItem('bra_categories', JSON.stringify(customCategories));
+      renderCategoryOptions();
+    }
+
     entries.push({
       date: document.getElementById('date').value,
       type: document.getElementById('type').value,
-      category: document.getElementById('category').value,
-      description: document.getElementById('description').value,
+      category: enteredCategory,
+      description: document.getElementById('description').value.trim(),
       amount: parseFloat(document.getElementById('amount').value)
     });
+
+    document.getElementById('category').value = '';
     document.getElementById('description').value = '';
     document.getElementById('amount').value = '';
     saveAndRender();
@@ -403,6 +436,7 @@
     link.click();
   }
 
+  renderCategoryOptions();
   saveAndRender();
 </script>
 </body>
