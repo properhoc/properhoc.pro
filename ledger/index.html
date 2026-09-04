@@ -286,16 +286,27 @@
       <option value="revenue">Revenue (+)</option>
       <option value="expense">Expense (-)</option>
     </select>
+    
     <input 
       type="text" 
       id="category" 
       list="category-options" 
-      placeholder="Select or type category..." 
+      placeholder="Category (type or select)..." 
       autocomplete="off" 
       required 
     />
     <datalist id="category-options"></datalist>
-    <input type="text" id="description" placeholder="Client, Vendor, or Memo" required />
+
+    <input 
+      type="text" 
+      id="description" 
+      list="vendor-options" 
+      placeholder="Vendor / Client (type or select)..." 
+      autocomplete="off" 
+      required 
+    />
+    <datalist id="vendor-options"></datalist>
+
     <input type="number" id="amount" placeholder="0.00" step="0.01" min="0" required />
     <button type="submit" class="primary">Record Item</button>
   </form>
@@ -312,7 +323,7 @@
           <th>Date</th>
           <th>Flow</th>
           <th>Account Code</th>
-          <th>Client / Memo</th>
+          <th>Vendor / Client</th>
           <th>Amount</th>
           <th></th>
         </tr>
@@ -336,8 +347,18 @@
     'Other Operating Cost'
   ];
 
+  const DEFAULT_VENDORS = [
+    'TaxDome',
+    'Google Workspace',
+    'Microsoft 365',
+    'Zoom',
+    'QuickBooks',
+    'Stripe'
+  ];
+
   let entries = JSON.parse(localStorage.getItem('bra_ledger') || '[]');
   let customCategories = JSON.parse(localStorage.getItem('bra_categories') || '[]');
+  let customVendors = JSON.parse(localStorage.getItem('bra_vendors') || '[]');
 
   document.getElementById('date').valueAsDate = new Date();
 
@@ -348,6 +369,17 @@
     allCategories.forEach(cat => {
       const opt = document.createElement('option');
       opt.value = cat;
+      datalist.appendChild(opt);
+    });
+  }
+
+  function renderVendorOptions() {
+    const datalist = document.getElementById('vendor-options');
+    datalist.innerHTML = '';
+    const allVendors = Array.from(new Set([...DEFAULT_VENDORS, ...customVendors]));
+    allVendors.forEach(ven => {
+      const opt = document.createElement('option');
+      opt.value = ven;
       datalist.appendChild(opt);
     });
   }
@@ -397,6 +429,7 @@
   document.getElementById('entry-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const enteredCategory = document.getElementById('category').value.trim();
+    const enteredVendor = document.getElementById('description').value.trim();
 
     if (enteredCategory && !DEFAULT_CATEGORIES.includes(enteredCategory) && !customCategories.includes(enteredCategory)) {
       customCategories.push(enteredCategory);
@@ -404,11 +437,17 @@
       renderCategoryOptions();
     }
 
+    if (enteredVendor && !DEFAULT_VENDORS.includes(enteredVendor) && !customVendors.includes(enteredVendor)) {
+      customVendors.push(enteredVendor);
+      localStorage.setItem('bra_vendors', JSON.stringify(customVendors));
+      renderVendorOptions();
+    }
+
     entries.push({
       date: document.getElementById('date').value,
       type: document.getElementById('type').value,
       category: enteredCategory,
-      description: document.getElementById('description').value.trim(),
+      description: enteredVendor,
       amount: parseFloat(document.getElementById('amount').value)
     });
 
@@ -425,7 +464,7 @@
 
   function exportToCSV() {
     if (!entries.length) return alert('No ledger records available to export.');
-    let csv = 'Date,Type,Category,Description,Amount\n';
+    let csv = 'Date,Type,Category,Vendor/Client,Amount\n';
     entries.forEach(e => {
       csv += `"${e.date}","${e.type}","${e.category}","${e.description.replace(/"/g, '""')}",${e.amount}\n`;
     });
@@ -437,6 +476,7 @@
   }
 
   renderCategoryOptions();
+  renderVendorOptions();
   saveAndRender();
 </script>
 </body>
