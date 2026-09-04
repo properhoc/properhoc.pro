@@ -46,7 +46,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      flex-wrap: gap;
+      flex-wrap: wrap;
       gap: 16px;
     }
     .brand-title {
@@ -65,6 +65,12 @@
       font-size: 0.95rem;
       margin: 0;
     }
+    .header-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
     .site-tag {
       font-size: 0.8rem;
       font-weight: 600;
@@ -74,6 +80,28 @@
       padding: 6px 12px;
       border-radius: 6px;
       border: 1px solid #bae6fd;
+      transition: background-color 0.15s ease;
+    }
+    .site-tag:hover {
+      background: #bae6fd;
+    }
+    .taxdome-tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #0f172a;
+      text-decoration: none;
+      background: #f1f5f9;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .taxdome-tag:hover {
+      background: #e2e8f0;
+      border-color: #cbd5e1;
     }
 
     /* Metric Summary Cards */
@@ -227,7 +255,14 @@
       <h1 class="brand-title">Bubble Rock <span>Advisors</span></h1>
       <p class="brand-sub">Practice Revenue, Expense & Tax Ledger</p>
     </div>
-    <a href="https://www.bubblerockadvisors.com/" target="_blank" rel="noopener" class="site-tag">bubblerockadvisors.com &rarr;</a>
+    <div class="header-links">
+      <a href="https://taxdome.com/client-portal" target="_blank" rel="noopener" class="taxdome-tag">
+        TaxDome Portal &rarr;
+      </a>
+      <a href="https://www.bubblerockadvisors.com/" target="_blank" rel="noopener" class="site-tag">
+        bubblerockadvisors.com &rarr;
+      </a>
+    </div>
   </div>
 
   <div class="metrics">
@@ -290,7 +325,6 @@
 </div>
 
 <script>
-  // Uses dedicated storage key for Bubble Rock data
   let entries = JSON.parse(localStorage.getItem('bra_ledger') || '[]');
 
   document.getElementById('date').valueAsDate = new Date();
